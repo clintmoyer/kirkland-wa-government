@@ -1,3 +1,5 @@
+# Kirkland Municipal Code
+
 ## Table of Contents
 
 - [Title  1 GENERAL PROVISIONS](#title--1-general-provisions)
@@ -333,8 +335,6 @@
   - [Chapter  31.48 ENFORCEMENT](#chapter--3148-enforcement)
   - [Chapter  31.52 MISCELLANEOUS PROVISIONS](#chapter--3152-miscellaneous-provisions)
 - [STATUTORY REFERENCES FOR WASHINGTON CITIES AND TOWNS](#statutory-references-for-washington-cities-and-towns)
-
-# Kirkland Municipal Code
 
 ## Title  1 GENERAL PROVISIONS
 

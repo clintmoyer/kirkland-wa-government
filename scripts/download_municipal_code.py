@@ -25,8 +25,8 @@ BASE_URL = "https://www.codepublishing.com/WA/Kirkland/html/"
 START_PAGE = "Kirkland01/Kirkland01.html"
 
 # Global variables
-markdown_content = "# Kirkland Municipal Code\n\n"
-toc = "## Table of Contents\n\n"
+toc = "## Table of Contents\n\n"  # Placeholder for the Table of Contents
+markdown_content = ""  # Content will be appended to this later
 
 # Create a new session and force the Connection to close after each request
 session = requests.Session()
@@ -110,14 +110,14 @@ def process_page(url):
 logging.info("Starting the crawl from the first page.")
 process_page(START_PAGE)
 
-# Write the Table of Contents to the markdown document
-markdown_content = toc + "\n" + markdown_content
+# Combine the header, TOC, and the content in the correct order
+full_markdown = "# Kirkland Municipal Code\n\n" + toc + "\n" + markdown_content
 
 # Save to a markdown file
-markdown_filename = "municipal.md"
+markdown_filename = "Kirkland_Municipal_Code.md"
 try:
     with open(markdown_filename, "w", encoding="utf-8") as f:
-        f.write(markdown_content)
+        f.write(full_markdown)
     logging.info(f"Markdown file '{markdown_filename}' successfully generated.")
 except Exception as e:
     logging.error(f"Error writing the markdown file: {e}")
