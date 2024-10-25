@@ -77,13 +77,19 @@ def process_page(url):
             # Log the chapter being processed
             logging.info(f"Found chapter: {chapter_text}")
 
-            # Extract Sections
-            sections = soup.find_all('h3', class_='Cite')
+            # Extract Sections (handle both normal and table sections)
+            sections = soup.find_all(['h3', 'p'], class_=['Cite', 'CL1table2'])  # Cover both headers and table headers
             for section in sections:
                 section_text = section.text.strip()
                 section_id = clean_id(section_text)
                 markdown_content += f"### {section_text}\n\n"
-                markdown_content += section.find_next('p', class_='P1').text.strip() + "\n\n"
+
+                # Extract all paragraph content following the section
+                next_elements = section.find_all_next('p')
+                for elem in next_elements:
+                    paragraph_text = elem.get_text(strip=True)
+                    if paragraph_text:
+                        markdown_content += paragraph_text + "\n\n"
 
                 # Log the section being processed
                 logging.info(f"Added section: {section_text}")
@@ -113,7 +119,7 @@ process_page(START_PAGE)
 full_markdown = "# Kirkland Zoning Code\n\n" + toc + "\n" + markdown_content
 
 # Save to a markdown file
-markdown_filename = "zoning.md"
+markdown_filename = "Kirkland_Zoning_Code.md"
 try:
     with open(markdown_filename, "w", encoding="utf-8") as f:
         f.write(full_markdown)
